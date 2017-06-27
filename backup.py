@@ -21,7 +21,7 @@ filename = dbName + '-' + dateString + '.dump.tar'
 
 # Create ssh command
 sshCmd = 'ssh ' + serverUser + '@' + serverIp + ' '
-createBackupCmd = sshCmd + '"dokku mongo:export ' + dbName + ' > ' + filename + '"'
+createBackupCmd = sshCmd + '"sudo dokku mongo:export ' + dbName + ' > ' + filename + '"'
 
 # create location and directory
 if createMonthFolders:
@@ -36,10 +36,6 @@ scpCmd = 'scp ' + serverUser + '@' + serverIp + ':' + filename + ' ' + storageLo
 # Create delete command
 deleteBackupOnServerCmd = sshCmd + '"rm ' + filename + '"'
 
-print(createBackupCmd)
-print(scpCmd)
-print(deleteBackupOnServerCmd)
-
-# call(createBackupCmd)
-# call(scpCmd)
-# call(deleteBackupOnServerCmd)
+call(createBackupCmd, shell=True)
+call(scpCmd, shell=True)
+call(deleteBackupOnServerCmd, shell=True)
