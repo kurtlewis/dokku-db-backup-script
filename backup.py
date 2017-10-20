@@ -16,7 +16,7 @@ import time
 import os
 
 # Create filename
-dateString = time.strftime('%d-%m-%Y', time.gmtime())
+dateString = time.strftime('%Y-%m-%d', time.gmtime())
 filename = dbName + '-' + dateString + '.dump.tar'
 
 # Create ssh command
